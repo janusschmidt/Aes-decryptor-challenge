@@ -214,9 +214,3 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
-*.exe
-*.pdb
-bin/Debug/Aes decryptor challenge.exe
-bin/Debug/Aes decryptor challenge.pdb
-obj/Debug/Aes decryptor challenge.exe
-obj/Debug/Aes decryptor challenge.pdb
