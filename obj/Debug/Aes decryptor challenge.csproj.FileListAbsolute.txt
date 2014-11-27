@@ -1,6 +1,0 @@
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Aes decryptor challenge\Aes decryptor challenge\bin\Debug\Aes decryptor challenge.exe.config
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Aes decryptor challenge\Aes decryptor challenge\obj\Debug\Aes decryptor challenge.csprojResolveAssemblyReference.cache
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Aes decryptor challenge\Aes decryptor challenge\bin\Debug\Aes decryptor challenge.exe
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Aes decryptor challenge\Aes decryptor challenge\bin\Debug\Aes decryptor challenge.pdb
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Aes decryptor challenge\Aes decryptor challenge\obj\Debug\Aes decryptor challenge.exe
-C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Aes decryptor challenge\Aes decryptor challenge\obj\Debug\Aes decryptor challenge.pdb
