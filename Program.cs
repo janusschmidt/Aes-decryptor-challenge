@@ -16,6 +16,7 @@ namespace Aes_decryptor_challenge
         static byte[] encryptedText = Convert.FromBase64String("yptyoDdVBdQtGhgoePppYHnWyugGmy0j81sf3zBeUXEO/LYRw+2XmVa0/v6YiSy9Kj8gMn/gNu2I7dPmfgSEHPUDJpNpiOWmmW1/jw/Pt29Are5tumWmnfkazcAb23xe7B4ruPZVxUEhfn/IrZPNZdr4cQNrHNgEv2ts8gVFuOBU+p792UPy8/mEIhW5ECppxGIb7Yrpg4w7IYNeFtX5d9W4W1t2e+6PcdcjkBK4a8y1cjEtuQ07RpPChOvLcSzlB/Bg7UKntzorRsn+y/d72qD2QxRzcXgbynCNalF7zaT6pEnwKB4i05fTQw6nB7SU1w2/EvCGlfiyR2Ia08mA0GikqegYA6xG/EAGs3ZJ0aQUGt0YZz0P7uBsQKdmCg7jzzEMHyGZDNGTj0F2dOFHLSOTT2/GGSht8eD/Ae7u/xnJj0bGgAKMtNttGFlNyvKpt2vDDT3Orfk6Jk/rD4CIz6O/Tnt0NkJLucHtIyvBYGtQR4+mhbfUELkczeDSxTXGDLaiU3de6tPaa0/vjzizoUbNFdfkIly/HWINdHoO83E=");
         static byte[] last26 = new byte[26];
         static double maxiterations = Math.Pow(17, 6);
+        static int besstSolutionAsciiiCount = 0;
 
         static void Main()
         {
@@ -33,19 +34,21 @@ namespace Aes_decryptor_challenge
                     {
                         myRijndael.Key = first6.Concat(last26).ToArray();
                         var decodedText = DecryptStringFromBytes(encryptedText, myRijndael);
-                        if (decodedText.Contains("pilot"))
+                        var bytes = Encoding.ASCII.GetBytes(decodedText);
+                        var countOfValidChars = bytes.Where(b => (int)b >= 32 && (int)b <= 122).Count();
+                        if (besstSolutionAsciiiCount < countOfValidChars)
                         {
+                            besstSolutionAsciiiCount = countOfValidChars;
                             Console.WriteLine();
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Found! key:{0}", string.Join(",", first6));
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine(decodedText);
-                            Console.ReadLine();
-                            return;
+                            Console.WriteLine("count of valid chars {0}", countOfValidChars);
                         }
 
                         i++;
-                        if (i % 20000 == 0)
+                        if (i % 10000 == 0)
                         {
                             writeStatusToConsole(ur, i);
                         }
@@ -65,7 +68,7 @@ namespace Aes_decryptor_challenge
         private static void writeStatusToConsole(Stopwatch ur, int i)
         {
             Console.CursorLeft = 0;
-            Console.Write("{0:n0} % færdig. Der er gået {1}", (i / maxiterations) * 100, ur.Elapsed);
+            Console.Write(@"{0:n0}% af udfaldsrum testet. Der er gået {1:hh\:mm\:ss}", (i / maxiterations) * 100, ur.Elapsed);
         }
 
         static IEnumerable<IEnumerable<byte>> getBaseXCombinations(int noOfCiphers, int baseX)
